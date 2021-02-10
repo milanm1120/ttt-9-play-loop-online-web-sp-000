@@ -11,16 +11,25 @@ def input_to_index(user_input)
   user_input.to_i - 1
 end
 
-def move(board, index, current_player = "X")
-  board[index] = current_player
+def move(board, index, char = "X")
+  board[index] = char
 end
 
-def position_taken?(board, location)
-  board[location] != " " && board[location] != ""
+def position_taken?(board, index)
+  # if the board and index at set position is blank, then position is empty = false
+  if board[index] == "" || board[index] == " " || board[index] == nil
+    return false
+  else board[index] == "X" || "O"
+    return true
+  end
 end
 
 def valid_move?(board, index)
-  index.between?(0,8) && !position_taken?(board, index)
+  if position_taken?(board, index) == false && (index).between?(0,8)
+    return true
+  else
+    return false
+  end
 end
 
 def turn(board)
